@@ -1,0 +1,5 @@
+image:
+  repository: pratik6958/demo-app
+  tag: latest
+
+replicaCount: 1
