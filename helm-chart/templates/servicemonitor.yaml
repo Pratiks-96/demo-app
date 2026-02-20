@@ -1,0 +1,22 @@
+{{- if .Values.servicemonitor.enabled }}
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: {{ .Values.service.name }}
+
+  labels:
+{{ toYaml .Values.servicemonitor.labels | indent 4 }}
+
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.service.name }}
+
+  endpoints:
+    - port: http
+      path: {{ .Values.servicemonitor.path }}
+      interval: {{ .Values.servicemonitor.interval }}
+
+{{- end }}
